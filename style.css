@@ -1,0 +1,179 @@
+
+/*arkaplan rengi ve yazı rengi*/
+/*body{ background: rgb(119, 119, 94); color: black;}*/
+/* ekran genişliği 992px olduğunda görüntülenecek arkaplan ve yazı renk ayarı*/
+/*@media screen and (max-width:992px){body{ background: rgb(119, 119, 242); color: white;}}*/
+/*ekran genişliği 600px olduğunda  görüntülenecek arkaplan ve yazı renk ayarı*/
+/*@media screen and (max-width:600px){body{    background: rgb(224, 224, 110);color: red;}} */
+
+
+/* navbarayarlaması yapılırken content otomatik margin ve padding ataması yapar
+buna engel olabilmek için değerler sıfırlanır*/
+
+/* box sizing de border-box ataması yapılmassa content üzerine margin ve padding ekleneceğinden width değeri değişebilir 
+bu ayarlama ile padding ve margin border-box içine yerleştirildiğinden atama yapılan width değerleriaynen geçerli olacaktır.*/
+
+*{
+    margin: 0;  
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: helventica;
+}
+
+/*genel ayarlama tamamlandı- navbar ayarları*/
+/*navbar çerçeve ayarları yapılır*/
+
+.navbar{
+    overflow: hidden; 
+    background: #333;
+    margin-top: 50px;
+    position: sticky;
+    top: 0;  /*navbarın sayfa aşağı doğru inerken nerede duracağı ayarıdır*/
+}
+
+/*linklerin sola yaslı- display- renk ayarlaması - yazı ortalaması - 
+padding aşağıdan yukarıdan 15 sağdan soldan 20 boşluk olsun -text dek. alt çizili olması
+yazılar büyük büyük harf olacak.*/
+.navbar a{ 
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/*navbar linkleri üzerine geldiğinde olacak efect ayarları yapılır.*/
+.navbar a:hover{
+    
+    background-color: #ddd;
+    color: black;
+}
+
+/* sayfada kenar sutun oluşturarak text alan biçimlendirmesi yapılabilir*/
+/* .text{
+    width: 300px;
+    height: 1200px;
+    display: block;
+    background: lightblue;
+    margin-bottom: 300px;
+} */
+
+
+   /*DÜZEN İÇİN MEDİA QUERY EN ALTA TOPLANABİLİR*/
+/*sadece dış çerçeve kullanımı halinde genişliğin 25%olarak ayarlandığında 4 bölme yanyana gelemez
+çünkü padding ve margin eklenmesi halinde genişliğin % si aşılmış olacaktır.
+orta çerçeve ile padding+margin+kalan kısmın 25% si alındığında 4 bölme alana sığar*/
+/* bu nedenle dış çerçeve 100% orta çerçeve 25% ile biçimlendiriz.*/
+/* iç çerçevenin biçimlendirmesinde isteğe göre ayarlama yapılabilmektedir*/
+
+.row{
+    width: 100%;
+}
+.outer-box{
+    width: 25%;
+    float: left;
+}
+.column{
+    padding: 20px;
+    margin: 20px;
+    height: 300px;
+}
+
+/*float kullanımında mutlaka ifade edilmesi gereken tanımlama yapılmalıdır. 
+görüntü bozukluğuna neden olmak için parenta gidilir
+after; row satır kodlarından sonra yazılan diğer kodu uygula
+içi boş content olmalı clear ile temizlenmeli ve display KESİNLİKLE YAZILMALIDIR*/
+
+/*clear ile left-right farketmez satırı kapatıp alt kısmına geçmeyi destekler 
+ama bu 3 satır kodun birinin eksik olması işlevi yaptırmaz*/
+.row::after{
+    content: "";
+    display: block;
+    clear: both;
+    
+}
+
+/* çerçeve şekli border ile çözümlenir text ortalanır kenar boşlukları ayarlanır 
+ve yazı boyutu belirlenerek şekillenme tamamlanır*/
+div + p{
+    border: 1px solid red;
+    font-size: 20px;
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    }
+
+/*exaple kısmını biçimlendiririz 
+600px altında bu alan görüntülenmemesi için display:none media querty içinde yer verilir
+hidden ile display none arasındaki fark hidden de alan ayrılır ama birşey görülmez
+display none ne alan ne herhangi bir şey görülmez*/
+    .example{
+        background: yellow;
+        text-align: center;
+        margin: 20px;
+        padding: 20px;
+        display: none;
+    }
+
+
+    .image{
+        width: 100%;
+    }
+    
+    .image-box{
+        margin: 20px;
+    }
+    .image .image-box img{
+        width: 100%;
+    
+    }
+
+
+
+
+/*screen diyerek pc de görüntüleneceğini belirtiriz 600px de yapılacak hareketler*/
+@media screen and (max-width: 600px) { 
+    
+    /*ekran küçüldüğünde genişlik tam kullanılacak navbar menüleri float none 
+    özelliği ile alt alta gelir*/
+    .navbar a{ 
+        width: 100%;
+        float: none;
+    }
+
+/*600px olduğunda her satırda 1 outer-box olması 
+ve yüksekliğinin 300den 100 e düşmesi aşağıdaki gibi saplanır.*/
+    .outer-box{
+        width: 100%;
+    }
+    .column{
+        height: 100px;
+    }
+    .example{
+        display: none;
+    }
+
+    /*600px den küçük sayfada resmin görüntülenmemesi için bu kodu ekleriz*/
+    .image-box{
+        display: none;
+    }
+    
+/*sayfamız küçüldüğünde p ve div de yazıların küçülmesi için aşağıdaki tanımlama yapılır*/
+    div + p{
+        font-size: 15px;
+    }
+}
+
+    @media screen and (min-width: 601px) and (max-width: 992px)
+    {
+        .outer-box{
+            width: 50%;
+            display: block; /*tam ekrandan 600px e kadar görünmeyecek ancak
+            600px ve küçük ekranda bu kutucuk görüntülenecektir*/
+        }
+    }
+    
